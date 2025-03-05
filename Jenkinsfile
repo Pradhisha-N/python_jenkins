@@ -10,18 +10,16 @@ pipeline {
  
         stage('Set Up Virtual Environment') {
             steps {
-                // Ensure python3-venv is available
                 sh 'python3 -m venv venv'
-                sh '. venv/bin/activate' // Activate the virtual environment
             }
         }
- 
+
         stage('Install Dependencies') {
             steps {
-                // Install dependencies inside the virtual environment
-                sh '. venv/bin/activate && pip install -r requirements.txt'
+                sh '. venv/bin/activate && pip install --upgrade pip && pip install -r requirements.txt'
             }
         }
+
  
         stage('Run Tests') {
             steps {
